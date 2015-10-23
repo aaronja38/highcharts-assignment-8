@@ -5,14 +5,134 @@
 	<link rel="stylesheet" href="styles/main.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script>
     	<script src="js/highcharts.js"></script>
-	
-		<script type="text/javascript" src="/js/themes/dark-unica.js"></script>
 	</head>
 <body>
 
-<h1>Assignment 8</h1>
+<h1>Assignment 8: Javascript Charts</h1>
 	<h2>by Aaron Albright</h2>
-	<p>PLACEHOLDER</p>
+	<p>The charts I chose to make are based on the US Census Bureau's population projections for the next 45 years. WHile it's a natural assumption that the US population will grow over time, I found it particularlly interesting to see the projections for the native-born versus foreign-born population. I then broke those numebrs down based on sex. While the change isn't drastic, there is a significant increase in foreign-born men and women. Both sexes are projected to double. As a result, the foreign-born population will hold a higher perctage of the total US population. Meanwhile, the percentage difference between native-born men and women continues to narrow, approaching an even, 50-50 split.</p>
+	<div id="container" style="width:90%; height:400px; margin: 0 auto;"></div>
+	<script>
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Projections of the US Population by Nativity: 2015 to 2060'
+        },
+        xAxis: {
+            categories: ['2015', '2020', '2030', '2040', '2050', '2060']
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Millions of People'
+            },
+            stackLabels: {
+                enabled: true,
+                style: {
+                    fontWeight: 'bold',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                }
+            }
+        },
+        legend: {
+            align: 'right',
+            x: -30,
+            verticalAlign: 'top',
+            y: 25,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+            borderColor: '#CCC',
+            borderWidth: 1,
+            shadow: false
+        },
+        tooltip: {
+            headerFormat: '<b>{point.x}</b><br/>',
+            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}' + ' million',
+            valueSuffix: ' million',
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal',
+                dataLabels: {
+                    enabled: true,
+                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                    style: {
+                        textShadow: '0 0 3px black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Native Born',
+            data: [278, 287, 303, 315, 326, 339]
+        }, {
+            name: 'Foreign Born',
+            data: [43, 48, 57, 65, 72, 78]
+        }]
+    });
+});</script>
+	
+	<p class="sourceGraf"><strong>Source:</strong> US Census Bureau: <a href="https://www.census.gov/population/projections/files/summary/NP2014-T2.xls">Table 2. Projections of the Population by Nativity for the United States: 2015 to 2060</a></p>
+		
+	<br>
+		
+	<div id="genderPop" style="min-width: 310px; height: 400px; max-width: 90%; margin: 0 auto"></div>
+	<script>
+	$(function () {
+    $('#genderPop').highcharts({
+        chart: {
+            type: 'area'
+        },
+        title: {
+            text: 'Projected US Population by Nativity Distributed by Sex: 2015 to 2060'
+        },
+        xAxis: {
+            categories: ['2015', '2020', '2030', '2040', '2050', '2060'],
+            tickmarkPlacement: 'on',
+            title: {
+                enabled: false
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Percent'
+            }
+        },
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} million)<br/>',
+            shared: true
+        },
+        plotOptions: {
+            area: {
+                stacking: 'percent',
+                lineColor: '#ffffff',
+                lineWidth: 1,
+                marker: {
+                    lineWidth: 1,
+                    lineColor: '#ffffff'
+                }
+            }
+        },
+        series: [{
+            name: 'Native-born Men',
+            data: [137, 142, 150, 156, 163, 170]
+        }, {
+            name: 'Native-born Women',
+            data: [140, 145, 153, 159, 164, 169]
+        }, {
+            name: 'Foreign-born Men',
+            data: [21, 23, 28, 32, 35, 38,]
+        }, {
+            name: 'Foreign-born Women',
+            data: [22, 25, 29,	33,	37,	40]
+        }]
+    });
+});
+	</script>
+	<p class="sourceGraf"><strong>Source:</strong> US Census Bureau: <a href="https://www.census.gov/population/projections/files/summary/NP2014-T4.xls">Table 4. Projections of the Native-Born Population by Sex and Selected Age Groups for the United States: 2015 to 2060</a> — <a href="https://www.census.gov/population/projections/files/summary/NP2014-T5.xls">Table 5. Projections of the Foreign-Born Population by Sex and Selected Age Groups for the United States: 2015 to 2060</a></p>
 	
 	
 	</body>

@@ -1,0 +1,29 @@
+html {
+    margin-top: 1%; 
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1, h2, p {
+	margin: 0 auto;
+	width: 95%
+}
+
+h1 {
+	font-weight: 600;
+	margin-bottom: .5%;
+}
+
+h2 {
+	margin-bottom: 1%;
+	font-weight: 400;
+}
+
+p {
+	margin-bottom: 1%;
+}
+
+.sourceGraf {
+	text-align: center;
+	font-size: 10pt;
+	font-family: serif;
+}
